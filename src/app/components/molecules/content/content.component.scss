@@ -1,0 +1,17 @@
+:host {
+    width: 100%;
+}
+
+.background-image { 
+    background-image: url("/assets/images/BG.jpg");
+    background-size: cover;
+    -webkit-background-size: cover;
+    display: block;
+    filter: blur(15px);
+    -webkit-filter: blur(15px);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    right: 0;
+    /* z-index: 1; */
+  }

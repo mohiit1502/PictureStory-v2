@@ -1,0 +1,9 @@
+.c-Form {
+  padding: 15px;
+  /* width: 400px; */
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  border: 1px solid lightgrey;
+}

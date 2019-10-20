@@ -1,0 +1,14 @@
+.c-InputField {
+  margin-bottom: 20px;
+  label {
+      float: left;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+  }
+  input[type="text"],input[type="password"] {
+    padding: 5px;
+    width: 70%;
+  }
+}

@@ -1,0 +1,6 @@
+<li [ngClass]="{active: tab.activeClass != undefined}">
+  <a [routerLink]="tab.href">
+    <i [ngClass]="['fas', tab.tabImage]"></i>
+    <span class="hideable hide">{{tab.tabText}}</span>
+  </a>
+</li>

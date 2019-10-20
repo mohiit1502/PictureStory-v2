@@ -1,0 +1,40 @@
+$themeColor-Light: #EEE2DC;
+// $themeColor-Dark:#252525;
+$themeColor-Dark:#E3E2DF;
+$theme-font: verdana, sans-serif;
+// $theme-supplementer: #f39c12;
+$theme-supplementer: #5D001E;
+
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+div.navbar-collapse li {
+    float: left;
+    a.nav-link i.far {
+        color: $themeColor-Light;
+        font-size: 1.6em;
+        padding: 0.2em;
+    }
+}
+
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-36 { font-size: 36px; }
+
+//OVERWRITES
+.nav-link {
+    padding: .7rem 0.5rem;
+}
+
+ul.nav { display: flex;}
+ul.nav li { margin: auto; }
