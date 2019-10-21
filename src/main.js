@@ -5,6 +5,8 @@ import {createStore, applyMiddleware} from 'redux'
 import * as serviceWorker from './serviceWorker';
 import Router from './app/router';
 import reducer from './app/reducer'
+import './index.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const store = createStore(reducer, applyMiddleware(thunk))
 

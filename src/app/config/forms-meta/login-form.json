@@ -2,7 +2,7 @@
     "login": {
         "email": {
             "label": "Email ID",
-            "placeholder": "Please enter your email ID...",
+            "placeholder": "Email ID",
             "type": "text",
             "id": "email",
             "elementType": "input",
@@ -18,7 +18,7 @@
         },
         "password": {
             "label": "Password",
-            "placeholder": "Select a strong password...",
+            "placeholder": "Password",
             "type": "password",
             "id": "password",
             "elementType": "input",

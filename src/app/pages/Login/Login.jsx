@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './Login.module.scss';
+import React from 'react'
+import PropTypes from 'prop-types'
+import styles from './Login.module.scss'
 import {connect} from 'react-redux'
 import {createPropsSelector} from 'reselect-immutable-helpers'
 
@@ -8,6 +8,7 @@ import * as actions from './actions'
 import {getLogin, getFormErrors, getFormValues} from './selectors'
 import LoginForm from '../../components/molecules/LoginForm'
 import SocialLogin from '../../components/molecules/SocialLogin'
+import Jumbotron from '../../components/molecules/common/Jumbotron/Jumbotron'
 
 class Login extends React.Component {
     constructor(props) {
@@ -21,20 +22,32 @@ class Login extends React.Component {
     }
 
     render() {
-      console.log("in login")
       const {updateFormErrors, updateFormValues, formErrors, formValues} = this.props
       return (
-          <div className={styles.Login}>
-              <h1 className="u-padding-top-md u-margin-bottom-sm">Welcome to Ecstatica</h1>
-              <p className="u-margin-bottom-md">Please login to continue</p>
-              <LoginForm
-                updateFormValues={updateFormValues}
-                updateFormErrors={updateFormErrors}
-                formErrors={formErrors}
-                formValues={formValues}
-            />
-            <p className={styles.loginSplitter}>OR</p>
-              <SocialLogin />
+          <div className={`${styles.Login} container`}>
+                <div className="row">
+                    <div className="col-12 col-lg-8">
+                        <Jumbotron
+                            jumboText="Welcome To Ecstatica"
+                            subText="Show us what you've got!"
+                            jumboDescription="An app for professional photographers, to provide a window to the world, to demonstrate the art within."
+                            furtherLink="Learn more"
+                        />
+                    </div>
+                    <div className="col-12 col-lg-4">
+                        <div className={styles.loginContainer}>
+                        <p className={styles['c-login-intimation']}>Let's get to know each other, shall we!</p>
+                            <LoginForm
+                                updateFormValues={updateFormValues}
+                                updateFormErrors={updateFormErrors}
+                                formErrors={formErrors}
+                                formValues={formValues}
+                            />
+                            <p className={styles.loginSplitter}>OR</p>
+                            <SocialLogin />
+                        </div>
+                    </div>
+                </div>
           </div>
       )
     }

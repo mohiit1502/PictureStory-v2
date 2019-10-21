@@ -1,12 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import * as styles from './Form.module.css'
+import * as styles from './Form.module.scss'
 import FormFieldContainer from '../FormFieldContainer';
 
 class Form extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            name: '',
+            greeting: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.onFocusHandler = this.onFocusHandler.bind(this)
+    }     
+    
+    handleChange(event) {
+        this.setState({ name: event.target.value });
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
+            .then(response => response.json())
+            .then(state => this.setState(state));
     }
 
     onFocusHandler() {
@@ -39,7 +56,7 @@ class Form extends React.Component {
                         onFocus={this.onFocusHandler}
                         customBlurHandler={
                             formFieldObject.impactsShippingOptions ||
-                            formFieldObject.id === 'number'
+                                formFieldObject.id === 'number'
                                 ? customBlurHandler
                                 : null
                         }
@@ -60,7 +77,12 @@ class Form extends React.Component {
             return formFieldObject !== null
         })
 
-        return <fieldset className={styles['c-Form']}>{inputListSection}</fieldset>
+        return (
+            <form className={styles['c-Form']} onSubmit={this.handleSubmit}>
+                <fieldset>{inputListSection}</fieldset>
+                <button type="submit" className="btn btn-primary btn-block" style={{marginTop: '15px', background: 'black'}}>Submit</button>
+            </form>
+        )
     }
 }
 

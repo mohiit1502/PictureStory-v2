@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './LoginForm.module.css';
+import styles from './LoginForm.module.scss';
 
 import loginFormFields from './../../../config/forms-meta/login-form.json'
 import Form from './../common/Form'

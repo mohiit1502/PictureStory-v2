@@ -7,6 +7,8 @@ import {createPropsSelector} from 'reselect-immutable-helpers'
 import * as actions from './actions'
 import {getHome} from './selectors'
 
+import Sidebar from './../../components/molecules/side-bar'
+
 class Home extends React.Component {
     constructor(props) {
         super(props)
@@ -21,8 +23,7 @@ class Home extends React.Component {
     render() {
         return (
             <div className={styles.Home}>
-                <h1 className="u-padding-top-md u-margin-bottom-sm">Home page</h1>
-                <p className="u-margin-bottom-md">Tips for getting started on this page:</p>
+                <Sidebar />
             </div>
         )
     }
