@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import * as styles from './Form.module.scss'
 import FormFieldContainer from '../FormFieldContainer';
 
 class Form extends React.Component {
@@ -78,7 +77,7 @@ class Form extends React.Component {
         })
 
         return (
-            <form className={styles['c-Form']} onSubmit={this.handleSubmit}>
+            <form className='c-Form' onSubmit={this.handleSubmit}>
                 <fieldset>{inputListSection}</fieldset>
                 <button type="submit" className="btn btn-primary btn-block" style={{marginTop: '15px', background: 'black'}}>Submit</button>
             </form>

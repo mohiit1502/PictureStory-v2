@@ -1,8 +1,11 @@
 // Components
 // ===
 
-// @import '../components/footer/style';
-// @import '../components/header/style';
-// @import '../components/email-subscribe/style';
-// @import '../components/page-loader/style';
+@import '../components/atoms/InputField/InputField.component';
+@import '../components/molecules/common/Form/Form.component';
+@import '../components/molecules/common/Jumbotron/Jumbotron.component';
+@import '../components/molecules/LoginForm/LoginForm.component';
+@import '../components/molecules/PageLoader/PageLoader.component';
+@import '../components/molecules/SocialLogin/SocialLogin.component';
+@import '../components/molecules/SideBar/SideBar.component';
 // @import '../preloader/preload';

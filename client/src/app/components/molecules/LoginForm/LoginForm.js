@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './LoginForm.module.scss';
 
 import loginFormFields from './../../../config/forms-meta/login-form.json'
 import Form from './../common/Form'
 
 const LoginForm = props => {
   return (
-    <div className={styles['c-LoginForm']}>
+    <div className='c-LoginForm'>
       <Form 
         metaData={loginFormFields} 
         context="login"

@@ -1,7 +1,7 @@
 import React from 'react';
-import Jumbotron from './Jumbotron.jsx';
+import SideBarTab from './SideBarTab';
 
-describe('Jumbotron', () => {
+describe('SideBarTab', () => {
    it('renders without error', () => {
 
    });

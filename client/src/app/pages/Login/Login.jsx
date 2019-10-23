@@ -8,7 +8,7 @@ import * as actions from './actions'
 import {getLogin, getFormErrors, getFormValues} from './selectors'
 import LoginForm from '../../components/molecules/LoginForm'
 import SocialLogin from '../../components/molecules/SocialLogin'
-import Jumbotron from '../../components/molecules/common/Jumbotron/Jumbotron'
+import Jumbotron from '../../components/molecules/common/Jumbotron'
 
 class Login extends React.Component {
     constructor(props) {

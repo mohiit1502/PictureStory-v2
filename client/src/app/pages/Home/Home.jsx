@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Home.module.css';
 import {connect} from 'react-redux'
 import {createPropsSelector} from 'reselect-immutable-helpers'
 
@@ -22,7 +21,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className={styles.Home}>
+            <div className="Home">
                 <Sidebar />
             </div>
         )

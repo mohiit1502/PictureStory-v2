@@ -1,4 +1,5 @@
 /* PLOP_INJECT_IMPORT */
+import SideBarTab from './SideBarTab';
 import SideBar from './SideBar';
 import Jumbotron from './Jumbotron';
 import FormFieldContainer from './FormFieldContainer';
@@ -12,6 +13,7 @@ import PageLoader from './PageLoader';
 
 export {
   /* PLOP_INJECT_EXPORT */
+	SideBarTab,
 	SideBar,
 	Jumbotron,
 	FormFieldContainer,

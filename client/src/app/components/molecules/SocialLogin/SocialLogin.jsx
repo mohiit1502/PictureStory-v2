@@ -1,7 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom'
 import {gapi} from 'gapi-script'
-import styles from './SocialLogin.module.scss';
 
 class SocialLogin extends React.Component{
 
@@ -27,7 +26,7 @@ class SocialLogin extends React.Component{
 
   onSuccess(googleUser) {
     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    // this.props.history.push('/home')
+    this.props.history.push('/home')
   }
 
   onFailure(error) {
@@ -36,7 +35,7 @@ class SocialLogin extends React.Component{
 
   render() {
     return (
-      <div className={styles['c-SocialLogin']}>
+      <div className='c-SocialLogin'>
         <div className="row">
           <div className="col-12">
             <div className="g-signin2" id="g-signin2"></div>

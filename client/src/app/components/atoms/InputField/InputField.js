@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './InputField.module.scss';
 
 const InputField = ({meta}) => {
   return (
-    <div className={styles['c-InputField']}>
+    <div className='c-InputField'>
       <div
             className={`form-group row ${
                 meta.container_class ? meta.container_class : ''
