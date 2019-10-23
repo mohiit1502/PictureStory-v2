@@ -7,7 +7,7 @@ import {createPropsSelector} from 'reselect-immutable-helpers'
 import * as actions from './actions'
 import {getHome} from './selectors'
 
-import Sidebar from './../../components/molecules/side-bar'
+import Sidebar from '../../components/molecules/SideBar'
 
 class Home extends React.Component {
     constructor(props) {
