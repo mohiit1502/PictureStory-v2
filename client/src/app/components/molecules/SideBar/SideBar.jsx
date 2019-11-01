@@ -1,15 +1,11 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import SideBarTab from './SideBarTab';
-import * as $ from 'jquery'
+import $ from 'jquery'
 
 const SideBar = props => {
 
   useEffect(() => {
-    $('#sidebarCollapse').on('click', () => {
-      $('#sidebar').toggleClass('active');
-      $('.hideable').toggleClass('hide');
-    });
     $('#sidebar.active > span').on('click', () => {
       $('#sidebar').css('transform', 'translateX(85px)');
       $('#sidebar').css('box-shadow', 'rgb(224, 151, 32) 10px 10px 30px');
@@ -17,13 +13,29 @@ const SideBar = props => {
     });
     $('*').on('click', (e) => {
       // e.stopPropagation();
-      if(e.target.id !== 'pullOutButton' && e.target.id !== 'sidebar') {
+      console.log($(e.target).closest('#sidebar'))
+      if($(e.target).closest('#sidebar').length === 0) {
         $('#sidebar').css('transform', 'translateX(0px)');
         $('#sidebar').css('box-shadow', '');
         $('.triangle').addClass('animation');
       }
     })
   })
+
+  const toggleSidebar = () => {
+    $('#sidebar').toggleClass('active');
+    $('.hideable').toggleClass('hide');
+    const position = $('#sidebar').css('transform').split(/[()]/)[1]
+    const currentX = +position.split(',')[4]
+    console.log(currentX)
+    console.log($('#sidebar').css('transform'))
+    console.log($('#sidebar').css('transform').split(/[()]/))
+    if (currentX && currentX === 255) {
+      $('#sidebar').css('transform', 'translateX(85px)');
+    } else if (currentX && currentX === 85) {
+      $('#sidebar').css('transform', 'translateX(255px)');
+    }
+  }
 
   const tabsData = [
     {'href': 'homeSubmenu', 'tabImage': 'fa-home', 'tabText': 'Home', 'activeClass': true, 'subList': false},
@@ -40,7 +52,7 @@ const SideBar = props => {
     <nav id="sidebar" className="c-SideBar active">
       <span className="triangle animation" id="pullOutButton"></span>
       <div className="sidebar-header">
-        <button type="button" id="sidebarCollapse" className="btn btn-info">
+        <button type="button" id="sidebarCollapse" className="btn btn-info" onClick={toggleSidebar}>
           <i className="fas fa-align-justify"></i>
         </button>
         <h3 className="logotext">Ecstatica</h3>
