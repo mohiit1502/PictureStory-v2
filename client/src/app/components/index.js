@@ -1,18 +1,33 @@
 /* PLOP_INJECT_IMPORT */
-import SideBarTab from './SideBarTab';
-import SideBar from './SideBar';
-import Jumbotron from './Jumbotron';
-import FormFieldContainer from './FormFieldContainer';
-import Form from './Form';
-import SocialLogin from './SocialLogin';
-import LoginForm from './LoginForm';
-import SelectOption from './SelectOption';
-import InputField from './InputField';
-import AtomsInputField from './AtomsInputField';
-import PageLoader from './PageLoader';
+import ImageViewerInner from './ImageViewerInner';
+import ImageHeader from './ImageHeader';
+import Image from './Image';
+import Paginator from './molecules/Paginator';
+import PrincipalContent from './molecules/PrincipalContent';
+import ImageViewer from './molecules/PrincipalContent/ImageViewer';
+import ImageContainer from './molecules/PrincipalContent/ImageContainer';
+import CommandPrompt from './molecules/common/CommandPrompt';
+import SideBarTab from './molecules/SideBar/SideBarTab';
+import SideBar from './molecules/SideBar';
+import Jumbotron from './molecules/common/Jumbotron';
+import FormFieldContainer from './molecules/common/FormFieldContainer';
+import Form from './molecules/common/Form';
+import SocialLogin from './molecules/SocialLogin';
+import LoginForm from './molecules/LoginForm';
+import SelectOption from './atoms/SelectOption';
+import InputField from './atoms/InputField';
+import PageLoader from './molecules/PageLoader';
 
 export {
   /* PLOP_INJECT_EXPORT */
+	ImageViewerInner,
+	ImageHeader,
+	Image,
+	Paginator,
+	PrincipalContent,
+	ImageViewer,
+	ImageContainer,
+	CommandPrompt,
 	SideBarTab,
 	SideBar,
 	Jumbotron,
@@ -22,6 +37,5 @@ export {
 	LoginForm,
 	SelectOption,
 	InputField,
-	AtomsInputField,
 	PageLoader,
 }

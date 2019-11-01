@@ -17,26 +17,26 @@ module.exports = plop => {
           type: 'add',
           // Plop will create directories for us if they do not exist
           // so it's okay to add files in nested locations.
-          path: 'src/app/components/{{pascalCase name}}/{{pascalCase name}}.js',
+          path: 'src/app/components/molecules/{{pascalCase name}}/{{pascalCase name}}.js',
           templateFile:
             'plop-templates/Component/Component.js.hbs',
         },
         {
           type: 'add',
-          path: 'src/app/components/{{pascalCase name}}/{{pascalCase name}}.test.js',
+          path: 'src/app/components/molecules/{{pascalCase name}}/{{pascalCase name}}.test.js',
           templateFile:
             'plop-templates/Component/Component.test.js.hbs',
         },
         {
           type: 'add',
           path:
-            'src/app/components/{{pascalCase name}}/{{pascalCase name}}.module.css',
+            'src/app/components/molecules/{{pascalCase name}}/{{pascalCase name}}.component.scss',
           templateFile:
-            'plop-templates/Component/Component.module.css.hbs',
+            'plop-templates/Component/Component.component.scss.hbs',
         },
         {
           type: 'add',
-          path: 'src/app/components/{{pascalCase name}}/index.js',
+          path: 'src/app/components/molecules/{{pascalCase name}}/index.js',
           templateFile: 'plop-templates/Component/index.js.hbs',
         },
         {

@@ -1,6 +1,5 @@
 // Components
 // ===
-
 @import '../components/atoms/InputField/InputField.component';
 @import '../components/molecules/common/Form/Form.component';
 @import '../components/molecules/common/Jumbotron/Jumbotron.component';
@@ -8,4 +7,9 @@
 @import '../components/molecules/PageLoader/PageLoader.component';
 @import '../components/molecules/SocialLogin/SocialLogin.component';
 @import '../components/molecules/SideBar/SideBar.component';
+@import '../components/molecules/SideBar/SideBarTab/SideBarTab.component';
+@import '../components/molecules/common/CommandPrompt/CommandPrompt.component';
+@import '../components/molecules/PrincipalContent/PrincipalContent.component';
+@import '../components/molecules/PrincipalContent/ImageContainer/Image/Image.component';
+@import '../components/molecules/PrincipalContent/ImageContainer/Image/ImageHeader/ImageHeader.component';
 // @import '../preloader/preload';

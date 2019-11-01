@@ -13,7 +13,7 @@ class SocialLogin extends React.Component{
   }
 
   componentDidMount() {
-    gapi.signin2.render('g-signin2', {
+    gapi && gapi.signin2 && gapi.signin2.render('g-signin2', {
       'scope': 'profile email',
       'width': this.width,
       'height': this.height,
@@ -26,7 +26,7 @@ class SocialLogin extends React.Component{
 
   onSuccess(googleUser) {
     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    this.props.history.push('/home')
+    // this.props.history.push('/home')
   }
 
   onFailure(error) {

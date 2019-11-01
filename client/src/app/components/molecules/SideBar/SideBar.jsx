@@ -1,8 +1,30 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import SideBarTab from './SideBarTab';
+import * as $ from 'jquery'
 
 const SideBar = props => {
+
+  useEffect(() => {
+    $('#sidebarCollapse').on('click', () => {
+      $('#sidebar').toggleClass('active');
+      $('.hideable').toggleClass('hide');
+    });
+    $('#sidebar.active > span').on('click', () => {
+      $('#sidebar').css('transform', 'translateX(85px)');
+      $('#sidebar').css('box-shadow', 'rgb(224, 151, 32) 10px 10px 30px');
+      $('.triangle').removeClass('animation');
+    });
+    $('*').on('click', (e) => {
+      // e.stopPropagation();
+      if(e.target.id !== 'pullOutButton' && e.target.id !== 'sidebar') {
+        $('#sidebar').css('transform', 'translateX(0px)');
+        $('#sidebar').css('box-shadow', '');
+        $('.triangle').addClass('animation');
+      }
+    })
+  })
+
   const tabsData = [
     {'href': 'homeSubmenu', 'tabImage': 'fa-home', 'tabText': 'Home', 'activeClass': true, 'subList': false},
     {'href': 'about', 'tabImage': 'fa-briefcase', 'tabText': 'About', 'activeClass': false, 'subList': false},
@@ -11,26 +33,24 @@ const SideBar = props => {
     {'href': 'question', 'tabImage': 'fa-question', 'tabText': 'FAQ', 'activeClass': false, 'subList': false},
     {'href': 'contact', 'tabImage': 'fa-paper-plane', 'tabText': 'Contact', 'activeClass': false, 'subList': false},
   ]
-  const tabItems = tabsData && tabsData.map((tab) => {
-    return <SideBarTab tab={tab} />
+  const tabItems = tabsData && tabsData.map((tab, index) => {
+    return <SideBarTab tab={tab} key={index} />
   })
   return (
-    <div className="c-SideBar">
-      <nav id="sidebar" class="active">
-        <div class="sidebar-header">
-          <button type="button" id="sidebarCollapse" class="btn btn-info">
-            <i class="fas fa-align-justify"></i>
-          </button>
-          <h3 class="logotext">Microbot</h3>
-        </div>
-        <ul class="list-unstyled components">
-          {tabItems}
-        </ul>
-      </nav>
-    </div>
+    <nav id="sidebar" className="c-SideBar active">
+      <span className="triangle animation" id="pullOutButton"></span>
+      <div className="sidebar-header">
+        <button type="button" id="sidebarCollapse" className="btn btn-info">
+          <i className="fas fa-align-justify"></i>
+        </button>
+        <h3 className="logotext">Ecstatica</h3>
+      </div>
+      <ul className="list-unstyled components">
+        {tabItems}
+      </ul>
+    </nav>
   )
 };
-
 
 SideBar.propTypes = {
   tabsData: PropTypes.array

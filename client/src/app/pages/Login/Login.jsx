@@ -21,16 +21,20 @@ class Login extends React.Component {
         initializeLogin()
     }
 
+    clicked() {
+        console.log('login handler')
+    }
+
     render() {
       const {updateFormErrors, updateFormValues, formErrors, formValues} = this.props
       return (
-          <div className={`${styles.Login} container`}>
+          <div className={`${styles.Login} container`} onClick={this.clicked}>
                 <div className="row">
                     <div className="col-12 col-lg-8">
                         <Jumbotron
                             jumboText="Welcome To Ecstatica"
                             subText="Show us what you've got!"
-                            jumboDescription="An app for professional photographers, to provide a window to the world, to demonstrate the art within."
+                            jumboDescription="An app for professional photographers, to provide a window to the world and to demonstrate the art within."
                             furtherLink="Learn more"
                         />
                     </div>
