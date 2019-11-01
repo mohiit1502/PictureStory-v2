@@ -9,6 +9,7 @@ import {getBackgroundImage, getHome} from './selectors'
 import Sidebar from '../../components/molecules/SideBar'
 import CommandPrompt from '../../components/molecules/common/CommandPrompt'
 import PrincipalContent from '../../components/molecules/PrincipalContent/PrincipalContent';
+import Uploader from '../../components/molecules/common/Uploader/Uploader';
 
 class Home extends React.Component {
     constructor(props) {
@@ -23,10 +24,12 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className="Home" style={{backgroundImage: `url(${this.props.backgroundImage})`}}>
+            <div className="Home">
+                <div className="c-background" style={{backgroundImage: `url(${this.props.backgroundImage})`}} />
                 <Sidebar />
                 <CommandPrompt />
                 <PrincipalContent />
+                <Uploader />
             </div>
         )
     }

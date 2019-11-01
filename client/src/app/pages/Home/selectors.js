@@ -12,5 +12,6 @@ export const getHome = createSelector(
 
 export const getBackgroundImage = createGetSelector(getHome, 'backgroundImage')
 export const getModalState = createGetSelector(getHome, 'modalOpened')
+export const getUploadModalState = createGetSelector(getHome, 'uploadModalOpened')
 export const getFormValues = createGetSelector(getHome, 'formValues')
 export const getFormErrors = createGetSelector(getHome, 'formErrors')

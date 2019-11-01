@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { createPropsSelector } from 'reselect-immutable-helpers';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import {Fade, Zoom, Paper} from '@material-ui/core';
+import {Zoom, Paper} from '@material-ui/core';
 import { updateModalState } from '../../../../pages/Home/actions';
 import { getModalState, getBackgroundImage } from '../../../../pages/Home/selectors';
-import ImageViewerInner from './ImageViewerInner/ImageViewerInner';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -59,7 +58,7 @@ const ImageViewer = props => {
 };
 
 ImageViewer.propTypes = {
-  handleClose: PropTypes.func,
+  handleCloseDispatcher: PropTypes.func,
   modalState: PropTypes.bool,
   selectedImage: PropTypes.string
 };

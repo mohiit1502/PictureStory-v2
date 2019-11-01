@@ -13,7 +13,7 @@ const SideBar = props => {
     });
     $('*').on('click', (e) => {
       // e.stopPropagation();
-      console.log($(e.target).closest('#sidebar'))
+      // console.log($(e.target).closest('#sidebar'))
       if($(e.target).closest('#sidebar').length === 0) {
         $('#sidebar').css('transform', 'translateX(0px)');
         $('#sidebar').css('box-shadow', '');
@@ -23,18 +23,19 @@ const SideBar = props => {
   })
 
   const toggleSidebar = () => {
-    $('#sidebar').toggleClass('active');
-    $('.hideable').toggleClass('hide');
     const position = $('#sidebar').css('transform').split(/[()]/)[1]
     const currentX = +position.split(',')[4]
-    console.log(currentX)
-    console.log($('#sidebar').css('transform'))
-    console.log($('#sidebar').css('transform').split(/[()]/))
     if (currentX && currentX === 255) {
       $('#sidebar').css('transform', 'translateX(85px)');
     } else if (currentX && currentX === 85) {
       $('#sidebar').css('transform', 'translateX(255px)');
     }
+    $('#sidebar').toggleClass('active');
+    $('.hideable').toggleClass('hide');
+    // console.log(currentX)
+    // console.log($('#sidebar').css('transform'))
+    // console.log($('#sidebar').css('transform').split(/[()]/))
+    $('.triangle').addClass('animation');
   }
 
   const tabsData = [

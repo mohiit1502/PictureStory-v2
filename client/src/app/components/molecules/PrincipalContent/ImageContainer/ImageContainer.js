@@ -24,12 +24,12 @@ class ImageContainer extends React.Component {
       new Image('dragonfly3', '/images/GUD_2.JPG', 'sampleDesc3'),
       new Image('dragonfly4', '/images/GUD_1.JPG', 'sampleDesc4')
     ]
-    const imageRenders = images.map((image) => {
-      return <ImageCard image={image}/>
+    const imageRenders = images.map((image, index) => {
+      return <ImageCard image={image} key={index} />
     })
     return (
-      <div class="container-fluid">
-        <div class="row" style={{justifyContent: 'space-between'}}>
+      <div className="container-fluid c-ImageContainer">
+        <div className="row c-Images">
           {imageRenders}
         </div>
       </div>

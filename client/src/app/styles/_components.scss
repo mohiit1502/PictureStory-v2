@@ -2,6 +2,9 @@
 // ===
 @import '../components/atoms/InputField/InputField.component';
 @import '../components/molecules/common/Form/Form.component';
+@import '../components/molecules/common/Dropzone/Dropzone.component';
+@import '../components/molecules/common/Uploader/Uploader.component';
+@import '../components/molecules/common/Progress/Progress.component';
 @import '../components/molecules/common/Jumbotron/Jumbotron.component';
 @import '../components/molecules/LoginForm/LoginForm.component';
 @import '../components/molecules/PageLoader/PageLoader.component';
@@ -9,7 +12,9 @@
 @import '../components/molecules/SideBar/SideBar.component';
 @import '../components/molecules/SideBar/SideBarTab/SideBarTab.component';
 @import '../components/molecules/common/CommandPrompt/CommandPrompt.component';
+@import '../components/molecules/common/CommandPrompt/CommandAndUserTools/CommandAndUserTools.component';
 @import '../components/molecules/PrincipalContent/PrincipalContent.component';
+@import '../components/molecules/PrincipalContent/ImageContainer/ImageContainer.component';
 @import '../components/molecules/PrincipalContent/ImageContainer/Image/Image.component';
 @import '../components/molecules/PrincipalContent/ImageContainer/Image/ImageHeader/ImageHeader.component';
 // @import '../preloader/preload';

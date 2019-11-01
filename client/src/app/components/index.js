@@ -1,4 +1,11 @@
 /* PLOP_INJECT_IMPORT */
+import Progress from './Progress';
+import Uploader from './Uploader';
+import Dropzone from './Dropzone';
+import StepProgressBar from './StepProgressBar';
+import UserTools from './UserTools';
+import ToolItem from './ToolItem';
+import CommandAndUserTools from './CommandAndUserTools';
 import ImageViewerInner from './ImageViewerInner';
 import ImageHeader from './ImageHeader';
 import Image from './Image';
@@ -20,6 +27,13 @@ import PageLoader from './molecules/PageLoader';
 
 export {
   /* PLOP_INJECT_EXPORT */
+	Progress,
+	Uploader,
+	Dropzone,
+	StepProgressBar,
+	UserTools,
+	ToolItem,
+	CommandAndUserTools,
 	ImageViewerInner,
 	ImageHeader,
 	Image,

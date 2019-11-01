@@ -29,7 +29,7 @@ const Image = props => {
 
   return (
     <Card className={`${classes.card} c-Image`} onClick={() => props.updateBackgroundDispatcher(image.imageUrl)}>
-      <CardHeader avatar={<ImageHeader image={image} />} title={image.imageTitle} />
+      <CardHeader avatar={<ImageHeader image={image} />} title={image.imageTitle} style={{textTransform: 'capitalize'}} />
       <CardActionArea>
         <CardMedia
           className={classes.media}

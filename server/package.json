@@ -2,7 +2,10 @@
   "name": "picturestory-v2-backend",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "cors": "^2.8.5",
+    "formidable": "^1.2.1"
+  },
   "scripts": {
     "start": "node-env-run --exec nodemon | pino-colada"
   },

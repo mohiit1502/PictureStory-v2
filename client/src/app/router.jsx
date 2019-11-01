@@ -15,6 +15,16 @@ export const LoadableLogin = Loadable({
     loading: PageLoader
 })
 
+export const LoadableEcstaticaCreator = Loadable({
+    loader: () => import('./pages/ecstatica/Creator'),
+    loading: PageLoader
+})
+
+export const LoadableEcstaticaViewer = Loadable({
+    loader: () => import('./pages/ecstatica/Viewer'),
+    loading: PageLoader
+})
+
 class Router extends React.Component {
 
     render() {
@@ -25,6 +35,8 @@ class Router extends React.Component {
                     <Route exact path="/" component={LoadableLogin} />
                     <Route path="/home" component={LoadableHome} />
                     <Route path="/login" component={LoadableLogin} />
+                    <Route path="/ecstatica/create" component={LoadableEcstaticaCreator} />
+                    <Route path="/ecstatica/view" component={LoadableEcstaticaViewer} />
                 </BrowserRouter>
             </Provider>
         )
