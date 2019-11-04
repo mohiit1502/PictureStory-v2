@@ -1,8 +1,10 @@
-export class ImageService {
+export default class ImageService {
 
   constructor() { }
 
-  compress(source_img_obj, quality, output_format) {
+  compress(source_img_file, quality, output_format) {
+    var img = document.createElement('img')
+    img.src = source_img_file.image_source;
 
     var mime_type;
     if (output_format === "png") {
@@ -14,13 +16,22 @@ export class ImageService {
     }
   
     var cvs = document.createElement('canvas');
-    cvs.width = source_img_obj.naturalWidth;
-    cvs.height = source_img_obj.naturalHeight;
-    var ctx = cvs.getContext("2d").drawImage(source_img_obj, 0, 0);
+    // cvs.width = img.naturalWidth;
+    // cvs.height = img.naturalHeight;
+    var ctx = cvs.getContext("2d").drawImage(img, 0, 0);
     var newImageData = cvs.toDataURL(mime_type, quality / 100);
-    var result_image_obj = new Image();
-    result_image_obj.src = newImageData;
-    return result_image_obj;
+    // var result_image_obj = new Image();
+    // result_image_obj.src = newImageData;
+    // return result_image_obj;
+    var byteString = atob(newImageData.split(',')[1]);
+    var mimeString = newImageData.split(',')[0].split(':')[1].split(';')[0];
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], {type: mimeString});
+    // return newImageData
   }
 
   upload(compressed_img_obj, upload_url, file_input_name, filename, successCallback, errorCallback, duringCallback, customHeaders) {

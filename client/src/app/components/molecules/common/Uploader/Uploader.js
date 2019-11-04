@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {createPropsSelector} from 'reselect-immutable-helpers';
 import {withStyles} from '@material-ui/core/styles';
+import ImageService from './../../../../services/image.service.ts'
 import {updateUploadModalState} from '../../../../pages/Home/actions';
 import {getUploadModalState} from '../../../../pages/Home/selectors';
 import Dropzone from './../Dropzone'
 import Progress from '../Progress';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import {Zoom, Paper} from '@material-ui/core';
+import {Zoom, Paper, responsiveFontSizes} from '@material-ui/core';
 
 const styles = theme => ({
   modal: {
@@ -32,15 +33,18 @@ class Uploader extends React.Component {
     super(props)
     this.state = {
       files: [],
+      imageURI: [],
       uploading: false,
       uploadProgress: {},
       successfullUploaded: false
     };
     this.onFilesAdded = this.onFilesAdded.bind(this);
-    this.uploadFiles = this.uploadFiles.bind(this);
+    this.uploadFile = this.uploadFile.bind(this);
     this.sendRequest = this.sendRequest.bind(this);
     this.renderActions = this.renderActions.bind(this);
     this.renderProgress = this.renderProgress.bind(this);
+    this.compressAndUploadFiles = this.compressAndUploadFiles.bind(this);
+    this.compressFile = this.compressFile.bind(this);
   }
 
   onFilesAdded(files) {
@@ -58,7 +62,7 @@ class Uploader extends React.Component {
           <img
             className="CheckIcon"
             alt="done"
-            src="baseline-check_circle_outline-24px.svg"
+            src="/images/cloud.jpg"
             style={{
               opacity:
                 uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
@@ -72,11 +76,7 @@ class Uploader extends React.Component {
   renderActions() {
     if (this.state.successfullUploaded) {
       return (
-        <button
-          onClick={() =>
-            this.setState({ files: [], successfullUploaded: false })
-          }
-        >
+        <button onClick={() => this.setState({files: [], successfullUploaded: false})}>
           Clear
         </button>
       );
@@ -84,23 +84,66 @@ class Uploader extends React.Component {
       return (
         <button
           disabled={this.state.files.length < 0 || this.state.uploading}
-          onClick={this.uploadFiles}
+          onClick={() => this.compressAndUploadFiles(this.uploadFile)}
         >
           Upload
         </button>
       );
     }
   }
-  
-  async uploadFiles() {
+
+  readURI(file){
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader()
+      reader.onload = (ev) => {
+        resolve(ev.target.result)
+      }
+      reader.readAsDataURL(file)
+    })
+  }
+
+  handleChange(e){
+    this.readURI(e); // maybe call this with webworker or async library?
+    if (this.props.onChange !== undefined)
+      this.props.onChange(e); // propagate to parent component
+  }
+
+  compressAndUploadFiles(callback) {
+    const jic = new ImageService()
     this.setState({ uploadProgress: {}, uploading: true });
     const promises = [];
-    this.state.files.forEach(file => {
-      promises.push(this.sendRequest(file));
+    this.state.files.forEach((file) => {
+      this.readURI(file).then((result) => {
+        file.image_source = result
+        this.compressFile(file, jic).then(async (result) => {
+          // callback(result)
+          promises.push(this.sendRequest(result));
+          try {
+            await Promise.all(promises);
+            this.setState({ successfullUploaded: true, uploading: false });
+          } catch (e) {
+            // Not Production ready! Do some error handling here instead...
+            this.setState({ successfullUploaded: true, uploading: false });
+          }
+        })
+      })
+    })
+  }
+  
+  compressFile(file, jic) {
+    return new Promise((resolve, reject) => {
+      resolve(jic.compress(file, 20))
     });
+  }
+
+  async uploadFile(file) {
+    this.setState({ uploadProgress: {}, uploading: true });
+    const promises = [];
+    // this.state.files.forEach(file => {
+    promises.push(this.sendRequest(file));
+    // });
     try {
       await Promise.all(promises);
-  
       this.setState({ successfullUploaded: true, uploading: false });
     } catch (e) {
       // Not Production ready! Do some error handling here instead...

@@ -20,6 +20,9 @@ class Dropzone extends React.Component {
 
   onFilesAdded(evt) {
     if (this.props.disabled) return;
+    console.log(evt.target.files)
+    console.log(evt.target.result)
+
     const files = evt.target.files;
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);
@@ -69,7 +72,7 @@ class Dropzone extends React.Component {
         <img
           alt="upload"
           className="Icon"
-          src="/images/cloud.svg"
+          src="/images/cloud.jpg"
         />
         <input
           ref={this.fileInputRef}

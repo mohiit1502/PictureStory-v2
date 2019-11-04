@@ -67,9 +67,10 @@ class CommandPrompt extends React.Component {
   }
 
   executeCommand() {
-    alert('called')
+    const commandField = $('#command')
+    commandField.toggleClass('loading')
     // this.domOpsService.hideNonCards();
-    let commandVal = $('#command').val();
+    let commandVal = commandField.val();
     console.log(commandVal)
     if(!commandVal) {
       // this.domOpsService.showEmptyCommandMessage(this.emptyCommandMessage);
@@ -100,7 +101,6 @@ class CommandPrompt extends React.Component {
           <div className="container-fluid">
             <input type="text" className="form-control" placeholder="What you need..."
               name="command" id="command" onKeyUp={(event) => this.initiateDomOpsOnEnter(event, this.executeCommand, 2000)}
-              // onClick={showContextMenu} #command>
               onClick={this.showContextMenu} />
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" id="inputSelectionContextMenu">
               <Link to="#" className="dropdown-item" onClick={this.executeCommand}>Fire</Link>

@@ -15,6 +15,14 @@
 		&.md-light{color:rgb(33, 37, 41)}
 		&.md-36{font-size:36px}
 	}
+
+	.loading {    
+		background-color: #ffffff;
+		background-image: url("http://loadinggif.com/images/image-selection/3.gif");
+		background-size: 25px 25px;
+		background-position: 98%;
+		background-repeat: no-repeat;
+	}
 	
 	.navbar {
 		padding: 5px;
