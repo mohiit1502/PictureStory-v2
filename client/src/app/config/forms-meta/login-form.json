@@ -1,0 +1,35 @@
+{
+    "login": {
+        "email": {
+            "label": "Email ID",
+            "placeholder": "Email ID",
+            "type": "text",
+            "id": "email",
+            "elementType": "input",
+            "validation": {
+                "required": {
+                    "isRequired": "true"
+                },
+                "rules": {
+                    "minlength": 6,
+                    "maxlength": 50
+                }
+            }
+        },
+        "password": {
+            "label": "Password",
+            "placeholder": "Password",
+            "type": "password",
+            "id": "password",
+            "elementType": "input",
+            "validation": {
+                "required": {
+                    "isRequired": "true"
+                },
+                "rules": {
+                    
+                }
+            }
+        }
+    }
+}

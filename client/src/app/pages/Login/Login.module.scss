@@ -1,0 +1,32 @@
+.Login {
+    background: #222;
+    max-width: unset;
+    @media only screen and (max-width: 1140px) {
+        padding-left: unset;
+        padding-right: unset;
+        margin-right: unset;
+        margin-left: unset;
+    }
+    .loginContainer {
+        border: 2px solid grey;
+        border-radius: 0.3rem;
+        margin: 1rem;
+        background: #eee;
+        padding-bottom: 20px;
+        .c-login-intimation {
+            padding: 15px 5px 15px 15px;
+            background: black;
+            color: white;
+            margin-bottom: 0;
+        }
+        .loginSplitter {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-transform: capitalize;
+            font-size: 25px;
+            font-weight: bolder;
+            line-height: 30px;
+        }
+    }
+}
