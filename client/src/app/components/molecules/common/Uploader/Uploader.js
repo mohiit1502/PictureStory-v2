@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {createPropsSelector} from 'reselect-immutable-helpers';
-import {withStyles} from '@material-ui/core/styles';
-import ImageService from './../../../../services/image.service.ts'
-import {updateUploadModalState} from '../../../../pages/Home/actions';
-import {getUploadModalState} from '../../../../pages/Home/selectors';
+import { connect } from 'react-redux';
+import { createPropsSelector } from 'reselect-immutable-helpers';
+import { withStyles } from '@material-ui/core/styles';
+import { updateUploadModalState } from '../../../../pages/Home/actions';
+import { getUploadModalState } from '../../../../pages/Home/selectors';
 import Dropzone from './../Dropzone'
 import Progress from '../Progress';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import {Zoom, Paper, responsiveFontSizes} from '@material-ui/core';
+import { Zoom, Paper } from '@material-ui/core';
 
 const styles = theme => ({
   modal: {
@@ -39,12 +38,12 @@ class Uploader extends React.Component {
       successfullUploaded: false
     };
     this.onFilesAdded = this.onFilesAdded.bind(this);
-    this.uploadFile = this.uploadFile.bind(this);
+    this.upload = this.upload.bind(this);
     this.sendRequest = this.sendRequest.bind(this);
     this.renderActions = this.renderActions.bind(this);
     this.renderProgress = this.renderProgress.bind(this);
     this.compressAndUploadFiles = this.compressAndUploadFiles.bind(this);
-    this.compressFile = this.compressFile.bind(this);
+    this.compress = this.compress.bind(this);
   }
 
   onFilesAdded(files) {
@@ -76,7 +75,7 @@ class Uploader extends React.Component {
   renderActions() {
     if (this.state.successfullUploaded) {
       return (
-        <button onClick={() => this.setState({files: [], successfullUploaded: false})}>
+        <button onClick={() => this.setState({ files: [], successfullUploaded: false })}>
           Clear
         </button>
       );
@@ -92,58 +91,62 @@ class Uploader extends React.Component {
     }
   }
 
-  readURI(file){
-    return new Promise((resolve, reject) => {
-      let reader = new FileReader()
-      reader.onload = (ev) => {
-        resolve(ev.target.result)
-      }
-      reader.readAsDataURL(file)
-    })
-  }
-
-  handleChange(e){
-    this.readURI(e); // maybe call this with webworker or async library?
-    if (this.props.onChange !== undefined)
-      this.props.onChange(e); // propagate to parent component
-  }
-
-  compressAndUploadFiles(callback) {
-    const jic = new ImageService()
-    this.setState({ uploadProgress: {}, uploading: true });
-    const promises = [];
+  compressAndUploadFiles() {
     this.state.files.forEach((file) => {
-      this.readURI(file).then((result) => {
-        file.image_source = result
-        this.compressFile(file, jic).then(async (result) => {
-          // callback(result)
-          promises.push(this.sendRequest(result));
-          try {
-            await Promise.all(promises);
-            this.setState({ successfullUploaded: true, uploading: false });
-          } catch (e) {
-            // Not Production ready! Do some error handling here instead...
-            this.setState({ successfullUploaded: true, uploading: false });
-          }
-        })
+      this.compress(file).then((result) => {
+        this.setState({ uploadProgress: {}, uploading: true });
+        // result.forEach((file) => {
+          this.upload(result)
+        // })
       })
     })
   }
-  
-  compressFile(file, jic) {
+
+  compress(file) {
     return new Promise((resolve, reject) => {
-      resolve(jic.compress(file, 20))
-    });
+      const width = 500;
+      const height = 300;
+      const fileName = file.name;
+      const reader = new FileReader();
+      const fileVariants = []
+      reader.onload = event => {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = () => {
+          const elem = document.createElement('canvas');
+          elem.width = width;
+          elem.height = height;
+          const ctx = elem.getContext('2d');
+          // img.width and img.height will contain the original dimensions
+          ctx.drawImage(img, 0, 0, width, height);
+          ctx.canvas.toBlob((blob1) => {
+            fileVariants.push(new File([blob1], `${fileName.split('.')[0]}_compressed_60.${fileName.split('.')[1]}`, {
+              type: 'image/jpeg',
+              lastModified: Date.now()
+            }))
+            ctx.canvas.toBlob((blob2) => {
+              fileVariants.push(new File([blob2], `${fileName.split('.')[0]}_compressed_20.${fileName.split('.')[1]}`, {
+                type: 'image/jpeg',
+                lastModified: Date.now()
+              }))
+              resolve(fileVariants)
+            }, 'image/jpeg', 0.2)
+          }, 'image/jpeg', 0.6)
+        }
+      }
+      reader.onerror = error => console.log(error);
+      reader.readAsDataURL(file);
+    })
   }
 
-  async uploadFile(file) {
+  async upload(files) {
     this.setState({ uploadProgress: {}, uploading: true });
     const promises = [];
     // this.state.files.forEach(file => {
-    promises.push(this.sendRequest(file));
+    promises.push(this.sendRequest(files));
     // });
     try {
-      await Promise.all(promises);
+      await Promise.all(promises).then(result => console.log('result === ' + result)).catch(err => console.log('error === ' + err));
       this.setState({ successfullUploaded: true, uploading: false });
     } catch (e) {
       // Not Production ready! Do some error handling here instead...
@@ -151,20 +154,22 @@ class Uploader extends React.Component {
     }
   }
 
-  sendRequest(file) {
+  sendRequest(files) {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
-  
+
       const formData = new FormData();
-      formData.append("file", file, file.name);
-  
+      files.forEach((file) => {
+        formData.append("file", file, file.name);
+      })
+
       req.open("POST", "http://localhost:3001/upload");
       req.send(formData);
     });
   }
 
   render() {
-    const {classes, modalState, handleCloseDispatcher} = this.props
+    const { classes, modalState, handleCloseDispatcher } = this.props
     return (
       <div className="c-Uploader">
         <Modal
