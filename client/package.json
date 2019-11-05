@@ -2,6 +2,7 @@
   "name": "picturestory-v2-client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mohiit1502.github.io/PictureStory-v2",
   "dependencies": {
     "@svgr/webpack": "4.3.2",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
