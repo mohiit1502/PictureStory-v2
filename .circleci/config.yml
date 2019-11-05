@@ -1,0 +1,45 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/node:13.0.1-stretch-browsers
+    steps:
+    - checkout
+    - run:
+        name: Setup Machine
+        command: |
+          # Install system dependencies
+          sudo apt-get update
+          sudo npm install -g npm
+          # Install node dependencies
+          npm install
+    - run: npm run build
+  upload:
+    docker:
+    - image: circleci/node:13.0.1-stretch-browsers
+    steps:
+    - checkout
+    - run:
+        name: Setup Machine
+        command: |
+          # Install system dependencies
+          sudo apt-get update
+          sudo npm install -g npm
+          # Install node dependencies
+          npm install
+    - run: npm run build -- --message "build ${CIRCLE_BUILD_NUM}
+        on ${CIRCLE_BRANCH} (${CIRCLE_SHA1})"
+
+workflows:
+  version: 2
+  build_and_upload:
+    jobs:
+    - build
+    - upload:
+        requires:
+        - build
+        filters:
+          branches:
+            only:
+            - development
+            - master
