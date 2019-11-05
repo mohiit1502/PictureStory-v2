@@ -12,8 +12,8 @@ jobs:
           sudo apt-get update
           sudo npm install -g npm
           # Install node dependencies
-          cd .. && npm install
-    - run: cd .. && npm run build
+          npm install
+    - run: npm run build
   upload:
     docker:
     - image: circleci/node:13.0.1-stretch-browsers
