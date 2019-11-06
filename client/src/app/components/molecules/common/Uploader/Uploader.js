@@ -113,6 +113,7 @@ class Uploader extends React.Component {
         const img = new Image();
         img.src = event.target.result;
         img.onload = () => {
+          fileVariants.push(file)
           const elem = document.createElement('canvas');
           elem.width = width;
           elem.height = height;
@@ -156,15 +157,17 @@ class Uploader extends React.Component {
 
   sendRequest(files) {
     return new Promise((resolve, reject) => {
-      const req = new XMLHttpRequest();
-
       const formData = new FormData();
       files.forEach((file) => {
         formData.append("file", file, file.name);
       })
-
-      req.open("POST", "http://localhost:3001/upload");
-      req.send(formData);
+      fetch('http://localhost:3001/upload', {
+        method: 'post',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(jsonData => resolve(console.log(jsonData)))
+      .catch(err => reject(err))
     });
   }
 

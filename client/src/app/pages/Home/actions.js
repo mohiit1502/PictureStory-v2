@@ -1,4 +1,7 @@
+import DataService from './../../services/data.service.ts'
+
 export const HOME_DATA_STATE_RECEIVED = 'HOME_DATA_STATE_RECEIVED'
+export const SAVE_RETRIEVED_IMAGES = 'SAVE_RETRIEVED_IMAGES'
 export const UPDATE_FORM_VALUES = 'UPDATE_BILLING_FORM_VALUES'
 export const UPDATE_FORM_ERRORS = 'UPDATE_BILLING_FORM_ERRORS'
 export const UPDATE_BACKGROUND = 'UPDATE_BACKGROUND'
@@ -6,15 +9,24 @@ export const UPDATE_MODAL_STATE = 'UPDATE_MODAL_STATE'
 export const UPDATE_UPLOAD_MODAL_STATE = 'UPDATE_UPLOAD_MODAL_STATE'
 
 export const updateHomeDataState = (payload) => ({type: HOME_DATA_STATE_RECEIVED, payload})
-
+const ds = new DataService()
 export const initializeHome = () => (dispatch) => {
     // return Promise.all([
     //     dispatch(initializeApp())
     // ])
     // .then(() => ({statusCode: 200}))
     // .catch((err) => ({statusCode: err.statusCode || 500}))
+    ds.getFeaturedImages().then(res => {
+        dispatch(saveRetrievedImages(res))
+    })
 }
 
+export const saveRetrievedImages = (images) => {
+    return {
+        type: SAVE_RETRIEVED_IMAGES,
+        payload: {images}
+    }
+}
 export const updateFormValues = (formValues) => {
     return {
         type: UPDATE_FORM_VALUES,

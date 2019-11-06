@@ -2,6 +2,7 @@ import Immutable from 'immutable'
 
 import {
     HOME_DATA_STATE_RECEIVED,
+    SAVE_RETRIEVED_IMAGES,
     UPDATE_FORM_ERRORS,
     UPDATE_FORM_VALUES,
     UPDATE_BACKGROUND,
@@ -17,6 +18,7 @@ const initialState = Immutable.Map({
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case HOME_DATA_STATE_RECEIVED:
+        case SAVE_RETRIEVED_IMAGES:
         case UPDATE_FORM_ERRORS:
         case UPDATE_FORM_VALUES:
         case UPDATE_BACKGROUND:
