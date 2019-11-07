@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
 
@@ -26,22 +26,39 @@ const useStyles = makeStyles({
 const Image = props => {
   const image = props.image
   const classes = useStyles()
+  const [img, setImg] = useState('')
 
+  useEffect(() => {
+      var base64Flag = 'data:image/jpeg;base64,';
+      var imageStr = arrayBufferToBase64(image.img.data.data);
+      const img = base64Flag + imageStr
+      image.img.imageUrl = img
+      setImg(img)
+  })
+
+  const arrayBufferToBase64 = (buffer) => {
+    var binary = '';
+    var bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => binary += String.fromCharCode(b));
+    return window.btoa(binary);
+  };
+  
+  console.log(img)
   return (
-    <Card className={`${classes.card} c-Image`} onClick={() => props.updateBackgroundDispatcher(image.imageUrl)}>
-      <CardHeader avatar={<ImageHeader image={image} />} title={image.imageTitle} style={{textTransform: 'capitalize'}} />
+    <Card className={`${classes.card} c-Image`} onClick={() => props.updateBackgroundDispatcher(img)}>
+      <CardHeader avatar={<ImageHeader image={image.img} />} title={image.img.name} style={{textTransform: 'capitalize'}} />
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={image.imageUrl}
-          title={image.imageTitle}
+          image={img}
+          title={image.img.name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {image.imageTitle}
+            {image.img.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {image.imageDescription}
+            {image.img.description}
           </Typography>
         </CardContent>
       </CardActionArea>

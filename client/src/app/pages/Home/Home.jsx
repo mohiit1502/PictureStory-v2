@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {createPropsSelector} from 'reselect-immutable-helpers'
 
 import * as actions from './actions'
-import {getBackgroundImage, getHome} from './selectors'
+import {getBackgroundImage} from './selectors'
 
 import Sidebar from '../../components/molecules/SideBar'
 import CommandPrompt from '../../components/molecules/common/CommandPrompt'
@@ -37,13 +37,11 @@ class Home extends React.Component {
 
 Home.propTypes = {
     backgroundImage: PropTypes.string,
-    initializeHome: PropTypes.func,
-    dataState: PropTypes.object
+    initializeHome: PropTypes.func
 }
 
 const mapStateToProps = createPropsSelector({
-    backgroundImage: getBackgroundImage,
-    dataState: getHome
+    backgroundImage: getBackgroundImage
 })
 
 const mapDispatchToProps = {

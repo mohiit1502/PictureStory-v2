@@ -17,8 +17,9 @@ export const initializeHome = () => (dispatch) => {
     // .then(() => ({statusCode: 200}))
     // .catch((err) => ({statusCode: err.statusCode || 500}))
     ds.getFeaturedImages().then(res => {
+        // console.log(res)
         dispatch(saveRetrievedImages(res))
-    })
+    }).catch(err => console.log(err))
 }
 
 export const saveRetrievedImages = (images) => {

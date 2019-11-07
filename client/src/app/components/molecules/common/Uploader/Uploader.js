@@ -95,9 +95,7 @@ class Uploader extends React.Component {
     this.state.files.forEach((file) => {
       this.compress(file).then((result) => {
         this.setState({ uploadProgress: {}, uploading: true });
-        // result.forEach((file) => {
           this.upload(result)
-        // })
       })
     })
   }
@@ -143,9 +141,7 @@ class Uploader extends React.Component {
   async upload(files) {
     this.setState({ uploadProgress: {}, uploading: true });
     const promises = [];
-    // this.state.files.forEach(file => {
     promises.push(this.sendRequest(files));
-    // });
     try {
       await Promise.all(promises).then(result => console.log('result === ' + result)).catch(err => console.log('error === ' + err));
       this.setState({ successfullUploaded: true, uploading: false });
