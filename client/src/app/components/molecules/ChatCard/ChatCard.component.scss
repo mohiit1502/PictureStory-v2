@@ -1,0 +1,17 @@
+.c-ChatCard {
+    border: 1px solid rgb(221, 152, 23);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 8px;
+    width: 65%;
+    display: flex;
+
+    &.rightFloater {
+        align-self: flex-end;
+        justify-content: flex-end;
+    }
+
+    p {
+        margin: unset;
+    }
+}

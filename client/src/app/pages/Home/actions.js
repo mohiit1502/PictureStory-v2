@@ -7,6 +7,7 @@ export const UPDATE_FORM_ERRORS = 'UPDATE_BILLING_FORM_ERRORS'
 export const UPDATE_BACKGROUND = 'UPDATE_BACKGROUND'
 export const UPDATE_MODAL_STATE = 'UPDATE_MODAL_STATE'
 export const UPDATE_UPLOAD_MODAL_STATE = 'UPDATE_UPLOAD_MODAL_STATE'
+export const TOGGLE_CHAT_VIEW = 'TOGGLE_CHAT_VIEW'
 
 export const updateHomeDataState = (payload) => ({type: HOME_DATA_STATE_RECEIVED, payload})
 const ds = new DataService()
@@ -60,6 +61,13 @@ export const updateUploadModalState = (uploadModalState) => {
     return {
         type: UPDATE_UPLOAD_MODAL_STATE,
         payload: {uploadModalOpened: uploadModalState}
+    }
+}
+
+export const toggleChatView = (chatView) => {
+    return {
+        type: TOGGLE_CHAT_VIEW,
+        payload: {chatView}
     }
 }
 

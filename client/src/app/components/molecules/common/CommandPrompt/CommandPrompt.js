@@ -1,5 +1,8 @@
 import React from 'react';
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 import $ from 'jquery'
+import {toggleChatView} from './../../../../pages/Home/actions'
 import CommandAndUserTools from './CommandAndUserTools/CommandAndUserTools';
 import {Link} from 'react-router-dom';
 
@@ -7,9 +10,13 @@ class CommandPrompt extends React.Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      chatView: false
+    }
     this.registerMouseAndKeyboardHandlers = this.registerMouseAndKeyboardHandlers.bind(this)
     this.showContextMenu = this.showContextMenu.bind(this)
     this.initiateDomOpsOnEnter = this.initiateDomOpsOnEnter.bind(this)
+    this.toggleChatView = this.toggleChatView.bind(this)
     this.timerId = 0
   }
 
@@ -71,7 +78,7 @@ class CommandPrompt extends React.Component {
     commandField.toggleClass('loading')
     // this.domOpsService.hideNonCards();
     let commandVal = commandField.val();
-    console.log(commandVal)
+    // console.log(commandVal)
     if(!commandVal) {
       // this.domOpsService.showEmptyCommandMessage(this.emptyCommandMessage);
     } else {
@@ -82,6 +89,13 @@ class CommandPrompt extends React.Component {
       // let recastResponse = this.recastOpsService.getRecastResponse(commandVal, text);
       // this.processRecastResponse(recastResponse);
     }
+  }
+
+  toggleChatView() {
+    this.setState({
+      chatView: !this.state.chatView
+    })
+    this.props.dispatchShowChatView(!this.state.chatView)
   }
 
   render() {
@@ -99,9 +113,12 @@ class CommandPrompt extends React.Component {
         </div>
         <nav className="navbar navbar-expand-lg navbar-light">
           <div className="container-fluid">
-            <input type="text" className="form-control" placeholder="What you need..."
-              name="command" id="command" onKeyUp={(event) => this.initiateDomOpsOnEnter(event, this.executeCommand, 2000)}
-              onClick={this.showContextMenu} />
+            <div className="c-iFieldContainer">
+              <input type="text" className="form-control" placeholder="What you need..."
+                name="command" id="command" onKeyUp={(event) => this.initiateDomOpsOnEnter(event, this.executeCommand, 2000)}
+                onClick={this.showContextMenu} />
+              <button className="btn btn-primary" onClick={this.toggleChatView}>{this.state.chatView ? 'Hide Chat' : 'Show Chat'}</button>
+            </div>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" id="inputSelectionContextMenu">
               <Link to="#" className="dropdown-item" onClick={this.executeCommand}>Fire</Link>
               <Link to="#" className="dropdown-item" onClick={this.resetCommand}>Clear</Link>
@@ -116,4 +133,15 @@ class CommandPrompt extends React.Component {
   }
 }
 
-export default CommandPrompt;
+CommandPrompt.props = {
+  dispatchShowChatView: PropTypes.func
+}
+
+const mapDispatchToProps = {
+  dispatchShowChatView: (chatView) => toggleChatView(chatView)
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(CommandPrompt)

@@ -1,4 +1,8 @@
 /* PLOP_INJECT_IMPORT */
+import ChatCard from './ChatCard';
+import ChatView from './ChatView';
+import MoodSelector from './MoodSelector';
+import MoodCard from './MoodCard';
 import Progress from './Progress';
 import Uploader from './Uploader';
 import Dropzone from './Dropzone';
@@ -27,6 +31,10 @@ import PageLoader from './molecules/PageLoader';
 
 export {
   /* PLOP_INJECT_EXPORT */
+	ChatCard,
+	ChatView,
+	MoodSelector,
+	MoodCard,
 	Progress,
 	Uploader,
 	Dropzone,

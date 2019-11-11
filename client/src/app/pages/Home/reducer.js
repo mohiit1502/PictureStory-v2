@@ -7,7 +7,8 @@ import {
     UPDATE_FORM_VALUES,
     UPDATE_BACKGROUND,
     UPDATE_MODAL_STATE,
-    UPDATE_UPLOAD_MODAL_STATE
+    UPDATE_UPLOAD_MODAL_STATE,
+    TOGGLE_CHAT_VIEW
 } from './actions'
 
 const initialState = Immutable.Map({
@@ -24,6 +25,7 @@ const reducer = (state = initialState, action) => {
         case UPDATE_BACKGROUND:
         case UPDATE_MODAL_STATE:
         case UPDATE_UPLOAD_MODAL_STATE:
+        case TOGGLE_CHAT_VIEW:
             return state.mergeDeep(action.payload)
         default:
             return state

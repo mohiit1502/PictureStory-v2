@@ -16,3 +16,4 @@ export const getUploadModalState = createGetSelector(getHome, 'uploadModalOpened
 export const getFormValues = createGetSelector(getHome, 'formValues')
 export const getFormErrors = createGetSelector(getHome, 'formErrors')
 export const getImages = createGetSelector(getHome, 'images')
+export const getChatViewStatus = createGetSelector(getHome, 'chatView')

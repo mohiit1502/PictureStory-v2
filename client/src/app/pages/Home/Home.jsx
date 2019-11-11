@@ -10,6 +10,7 @@ import Sidebar from '../../components/molecules/SideBar'
 import CommandPrompt from '../../components/molecules/common/CommandPrompt'
 import PrincipalContent from '../../components/molecules/PrincipalContent/PrincipalContent';
 import Uploader from '../../components/molecules/common/Uploader/Uploader';
+import ChatView from '../../components/molecules/ChatView/ChatView';
 
 class Home extends React.Component {
     constructor(props) {
@@ -28,6 +29,7 @@ class Home extends React.Component {
                 <div className="c-background" style={{backgroundImage: `url(${this.props.backgroundImage})`}} />
                 <Sidebar />
                 <CommandPrompt />
+                <ChatView />
                 <PrincipalContent />
                 <Uploader />
             </div>

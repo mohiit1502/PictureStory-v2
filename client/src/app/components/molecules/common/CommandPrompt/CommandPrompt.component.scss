@@ -284,7 +284,7 @@
 	}
 	
 	.form-control {
-		padding: .6rem 1em;
+		padding: .6rem 3em 0.6em 1em;
 	}
 	
 	.container-fluid {
@@ -295,8 +295,21 @@
 		flex-direction: column;
 	}
 	
+	.c-iFieldContainer {
+		width: 50%;
+		border: 1px solid #ced4da;
+		border-radius: .25rem;
+		background: white;
+	}
+
 	#command.form-control {
-		width: 45%;
+		width: 85%;
+		margin-right: 15px;
+		display: inline-block;
+		border: unset;
+		&:active, &:focus {
+			box-shadow: none;
+		}
 	}
 	
 	#faux {
