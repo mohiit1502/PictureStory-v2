@@ -10,6 +10,7 @@
     "autoprefixer": "^9.7.3",
     "babel-eslint": "10.0.3",
     "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
     "babel-plugin-named-asset-import": "^0.3.5",
     "babel-preset-react-app": "^9.1.0",
     "bootstrap": "^4.4.1",
@@ -161,7 +162,6 @@
     "@babel/preset-react": "^7.7.4",
     "@material-ui/core": "^4.8.2",
     "@material-ui/icons": "^4.5.1",
-    "babel-loader": "^8.0.6",
     "body-parser": "^1.19.0",
     "plop": "^2.5.3"
   },
