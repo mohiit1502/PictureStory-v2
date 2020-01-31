@@ -43,7 +43,7 @@ const Image = props => {
     return window.btoa(binary);
   };
   
-  console.log(img)
+  // console.log(img)
   return (
     <Card className={`${classes.card} c-Image`} onClick={() => props.updateBackgroundDispatcher(img)}>
       <CardHeader avatar={<ImageHeader image={image.img} />} title={image.img.name} style={{textTransform: 'capitalize'}} />

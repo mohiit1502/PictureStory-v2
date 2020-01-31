@@ -8,6 +8,7 @@ export const UPDATE_BACKGROUND = 'UPDATE_BACKGROUND'
 export const UPDATE_MODAL_STATE = 'UPDATE_MODAL_STATE'
 export const UPDATE_UPLOAD_MODAL_STATE = 'UPDATE_UPLOAD_MODAL_STATE'
 export const TOGGLE_CHAT_VIEW = 'TOGGLE_CHAT_VIEW'
+export const UPDATE_CHAT_MESSAGES = 'UPDATE_CHAT_MESSAGES'
 
 export const updateHomeDataState = (payload) => ({type: HOME_DATA_STATE_RECEIVED, payload})
 const ds = new DataService()
@@ -68,6 +69,13 @@ export const toggleChatView = (chatView) => {
     return {
         type: TOGGLE_CHAT_VIEW,
         payload: {chatView}
+    }
+}
+
+export const updateChatMessages = (message) => {
+    return {
+        type: UPDATE_CHAT_MESSAGES,
+        payload: message
     }
 }
 

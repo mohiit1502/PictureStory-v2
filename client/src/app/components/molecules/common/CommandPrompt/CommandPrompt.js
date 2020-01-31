@@ -2,9 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
-import {toggleChatView} from './../../../../pages/Home/actions'
+import {toggleChatView, updateChatMessages} from './../../../../pages/Home/actions'
 import CommandAndUserTools from './CommandAndUserTools/CommandAndUserTools';
 import {Link} from 'react-router-dom';
+import ChatMessage from './../../../../models/chatmessage.model'
 
 class CommandPrompt extends React.Component {
 
@@ -17,6 +18,7 @@ class CommandPrompt extends React.Component {
     this.showContextMenu = this.showContextMenu.bind(this)
     this.initiateDomOpsOnEnter = this.initiateDomOpsOnEnter.bind(this)
     this.toggleChatView = this.toggleChatView.bind(this)
+    this.executeCommand = this.executeCommand.bind(this)
     this.timerId = 0
   }
 
@@ -78,6 +80,8 @@ class CommandPrompt extends React.Component {
     commandField.toggleClass('loading')
     // this.domOpsService.hideNonCards();
     let commandVal = commandField.val();
+    const message = new ChatMessage(commandVal, true)
+    this.props.dispatchMessage(message)
     // console.log(commandVal)
     if(!commandVal) {
       // this.domOpsService.showEmptyCommandMessage(this.emptyCommandMessage);
@@ -134,10 +138,12 @@ class CommandPrompt extends React.Component {
 }
 
 CommandPrompt.props = {
+  dispatchMessage: PropTypes.func,
   dispatchShowChatView: PropTypes.func
 }
 
 const mapDispatchToProps = {
+  dispatchMessage: (message) => updateChatMessages(message),
   dispatchShowChatView: (chatView) => toggleChatView(chatView)
 }
 

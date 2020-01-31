@@ -11,10 +11,6 @@ const ChatCard = ({chat}) => {
   );
 };
 
-ChatCard.defaultProps = {
-
-};
-
 ChatCard.propTypes = {
 
 };

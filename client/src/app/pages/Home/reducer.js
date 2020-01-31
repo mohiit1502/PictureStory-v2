@@ -8,12 +8,14 @@ import {
     UPDATE_BACKGROUND,
     UPDATE_MODAL_STATE,
     UPDATE_UPLOAD_MODAL_STATE,
-    TOGGLE_CHAT_VIEW
+    TOGGLE_CHAT_VIEW,
+    UPDATE_CHAT_MESSAGES
 } from './actions'
 
 const initialState = Immutable.Map({
     formErrors: [],
-    formValues: []
+    formValues: [],
+    chatMessages: []
 })
 
 const reducer = (state = initialState, action) => {
@@ -27,6 +29,11 @@ const reducer = (state = initialState, action) => {
         case UPDATE_UPLOAD_MODAL_STATE:
         case TOGGLE_CHAT_VIEW:
             return state.mergeDeep(action.payload)
+        case UPDATE_CHAT_MESSAGES:
+            console.log(...state.get('chatMessages'))
+            const chatMessages = [...state.get('chatMessages'), action.payload]
+            console.log(chatMessages)
+            return state.setIn('chatMessages', chatMessages)
         default:
             return state
     }
