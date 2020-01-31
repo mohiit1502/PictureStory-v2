@@ -1,7 +1,5 @@
 export default class DataService {
 
-  constructor() { }
-
   getFeaturedImages() {
     return fetch('/images/nature')
     .then(res => {

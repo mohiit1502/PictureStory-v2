@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MoodSelector from '../MoodSelector/MoodSelector';
+// import MoodSelector from '../MoodSelector/MoodSelector';
 
 const MoodCard = ({mood}) => {
   return (

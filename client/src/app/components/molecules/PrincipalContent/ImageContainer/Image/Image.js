@@ -34,7 +34,7 @@ const Image = props => {
       const img = base64Flag + imageStr
       image.img.imageUrl = img
       setImg(img)
-  })
+  }, [image.img.data.data, image.img.imageUrl])
 
   const arrayBufferToBase64 = (buffer) => {
     var binary = '';

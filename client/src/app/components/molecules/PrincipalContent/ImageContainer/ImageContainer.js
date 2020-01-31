@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {createPropsSelector} from 'reselect-immutable-helpers'
 import {getImages} from './../../../../pages/Home/selectors'
 import ImageCard from './Image'
-import Image from './../../../../models/image.model'
+// import Image from './../../../../models/image.model'
 
 class ImageContainer extends React.Component {
 

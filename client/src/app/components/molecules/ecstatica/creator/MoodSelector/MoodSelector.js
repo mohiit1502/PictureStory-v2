@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import MoodCard from '../MoodCard/MoodCard';
 
 const MoodSelector = props => {
