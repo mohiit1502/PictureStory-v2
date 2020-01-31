@@ -29,6 +29,15 @@ jobs:
           npm install
     - run: npm run build -- --message "build ${CIRCLE_BUILD_NUM}
         on ${CIRCLE_BRANCH} (${CIRCLE_SHA1})"
+  deploy:
+    docker:
+        - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: Deploy Master to Heroku
+          command: |
+            git push https://heroku:a478c20f-0249-4285-9d06-edba5b011a28@git.heroku.com/picturestory-v2.git development
 
 workflows:
   version: 2
