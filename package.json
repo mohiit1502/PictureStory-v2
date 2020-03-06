@@ -3,21 +3,21 @@
   "homepage": "http://mohiit1502.github.io/PictureStory-v2",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {},
+  "dependencies": {},
   "scripts": {
     "clientinstall": "cd client && npm install",
     "serverinstall": "cd server && npm install",
     "install": "run-p clientinstall serverinstall",
     "clientstart": "cd client && npm start",
     "serverstart": "cd server && npm start",
-    "start": "npm install -g run-p@latest && run-p clientstart serverstart",
+    "start": "npm install npm-run-all && run-p clientstart serverstart",
     "build": "cd client && npm run build",
     "predeployclient": "cd client && npm run build",
     "predeployserver": "cd server && npm run build",
     "predeploy": "run-p predeployclient predeployserver",
     "deploy": "gh-pages -d build"
   },
-  "dependencies": {
+  "devDependencies": {
     "npm-run-all": "^4.1.5"
   }
 }
