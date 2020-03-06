@@ -10,7 +10,7 @@
     "install": "run-p clientinstall serverinstall",
     "clientstart": "cd client && npm start",
     "serverstart": "cd server && npm start",
-    "start": "npm install && run-p clientstart serverstart",
+    "start": "npx run-p clientstart serverstart",
     "build": "cd client && npm run build",
     "predeployclient": "cd client && npm run build",
     "predeployserver": "cd server && npm run build",
