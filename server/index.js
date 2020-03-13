@@ -2,11 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
 const cors = require('cors')
+const cluster = require('cluster')
+const numCPUs = require('os').cpus().length;
 const upload = require('./filesManager/upload')
 const download = require('./filesManager/download')
 const multer = require('multer')
 const mongoHandler = require('./dbManager/mongoIO')
 
+const isDev = process.env.NODE_ENV !== 'production';
 const app = express();
 var corsOptions = {origin: '*', optionsSuccessStatus: 200,}
 
